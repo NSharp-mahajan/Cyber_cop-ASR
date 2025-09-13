@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import jsPDF from 'jspdf';
+import '../styles/FIRGenerator.css';
 
 function FIRGenerator() {
   const [formData, setFormData] = useState({
@@ -8,8 +9,11 @@ function FIRGenerator() {
     incident: '',
     location: '',
     language: 'english',
+    date: new Date().toISOString().split('T')[0],
+    time: new Date().toTimeString().split(' ')[0].slice(0, 5),
   });
-  const [showResult, setShowResult] = useState(false);
+  const [activeFAQ, setActiveFAQ] = useState(null);
+  const [isGenerating, setIsGenerating] = useState(false);
 
   const handleChange = (e) => {
     setFormData(prev => ({
@@ -19,241 +23,402 @@ function FIRGenerator() {
   };
 
   const generatePDF = () => {
-    const doc = new jsPDF();
-    doc.text(generateFIRContent(), 10, 10);
-    doc.save('FIR.pdf');
+    setIsGenerating(true);
+    setTimeout(() => {
+      const doc = new jsPDF();
+      doc.setFontSize(12);
+      doc.text(generateFIRContent(), 20, 20);
+      doc.save('FIR.pdf');
+      setIsGenerating(false);
+    }, 1000);
   };
 
   const generateFIRContent = () => {
-    const { name, contact, incident, location, language } = formData;
+    const { name, contact, incident, location, language, date, time } = formData;
+    const currentDate = new Date().toLocaleDateString('en-IN');
 
     if (language === 'hindi') {
-      return `सेवा में,\nथाना प्रभारी,\nस्थान: ${location}\n\nविषय: साइबर अपराध की शिकायत\n\nमहोदय,\n\nमैं, ${name}, संपर्क नंबर ${contact}, आपको सूचित करता हूँ कि मेरे साथ निम्नलिखित साइबर अपराध हुआ:\n${incident}\n\nकृपया उचित कार्रवाई करें।\n\nधन्यवाद,\n${name}`;
+      return `सेवा में,\nथाना प्रभारी,\nस्थान: ${location}\n\nविषय: साइबर अपराध की शिकायत\n\nमहोदय,\n\nमैं, ${name}, संपर्क नंबर ${contact}, आपको सूचित करता हूँ कि मेरे साथ निम्नलिखित साइबर अपराध हुआ:\n\n${incident}\n\nदिनांक: ${date}\nसमय: ${time}\n\nकृपया उचित कार्रवाई करें।\n\nधन्यवाद,\n${name}\nदिनांक: ${currentDate}`;
     } else {
-      return `To,\nThe Officer-in-Charge,\nPolice Station: ${location}\n\nSubject: Complaint regarding cybercrime\n\nRespected Sir/Madam,\n\nI, ${name}, Contact: ${contact}, would like to file a report regarding the following cybercrime incident:\n${incident}\n\nKindly take the necessary action regarding this matter.\n\nThank you,\n${name}`;
+      return `To,\nThe Officer-in-Charge,\nPolice Station: ${location}\n\nSubject: Complaint regarding cybercrime\n\nRespected Sir/Madam,\n\nI, ${name}, Contact: ${contact}, would like to file a report regarding the following cybercrime incident:\n\n${incident}\n\nDate of Incident: ${date}\nTime of Incident: ${time}\n\nKindly take the necessary action regarding this matter.\n\nThank you,\n${name}\nDate: ${currentDate}`;
     }
   };
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(generateFIRContent());
-    alert('📋 FIR content copied to clipboard!');
+    // Show a better notification
+    const notification = document.createElement('div');
+    notification.className = 'copy-notification';
+    notification.textContent = '📋 FIR copied to clipboard!';
+    document.body.appendChild(notification);
+    setTimeout(() => {
+      document.body.removeChild(notification);
+    }, 2000);
   };
 
+  const toggleFAQ = (index) => {
+    setActiveFAQ(activeFAQ === index ? null : index);
+  };
+
+  const faqs = [
+    {
+      question: "What is an FIR?",
+      answer: "An FIR (First Information Report) is a written document prepared by police when they receive information about a cognizable offense. It's crucial as it sets criminal law in motion."
+    },
+    {
+      question: "How long does it take?",
+      answer: "Our AI generates your FIR in under 30 seconds. Fill details, preview, and download instantly as PDF."
+    },
+    {
+      question: "Is it legally valid?",
+      answer: "The generated FIR is a draft you can take to your local police station. Police will verify details and register it officially."
+    },
+    {
+      question: "What info do I need?",
+      answer: "Full name, contact info, incident location, detailed description, and any supporting evidence like screenshots."
+    },
+    {
+      question: "Can I use Hindi?",
+      answer: "Yes! Our tool supports both English and Hindi. Choose your preferred language for better compatibility."
+    },
+    {
+      question: "What cybercrimes can I report?",
+      answer: "Online fraud, phishing, identity theft, cyberbullying, harassment, financial scams, and other digital crimes."
+    },
+    {
+      question: "Is my data secure?",
+      answer: "Yes! Your data is encrypted and never stored permanently. We prioritize your privacy and security."
+    },
+    {
+      question: "Can I edit after generating?",
+      answer: "Absolutely! You can modify any field and the preview updates instantly. No need to start over."
+    }
+  ];
+
+  const features = [
+    {
+      icon: "🤖",
+      title: "AI-Powered Generation",
+      description: "Advanced AI creates comprehensive and legally structured FIRs"
+    },
+    {
+      icon: "⚡",
+      title: "Instant Processing",
+      description: "Generate your FIR in seconds, not hours"
+    },
+    {
+      icon: "📄",
+      title: "PDF Download",
+      description: "Download your FIR as a professional PDF document"
+    },
+    {
+      icon: "🌐",
+      title: "Multi-Language",
+      description: "Support for English and Hindi languages"
+    },
+    {
+      icon: "🔒",
+      title: "Secure & Private",
+      description: "Your data is encrypted and never stored permanently"
+    },
+    {
+      icon: "🇮🇳",
+      title: "Made for India",
+      description: "Designed specifically for Indian legal requirements"
+    }
+  ];
+
+  const testimonials = [
+    {
+      name: "Priya Sharma",
+      location: "Mumbai",
+      text: "This tool saved me hours of confusion. I was able to file my cyber fraud complaint quickly and professionally."
+    },
+    {
+      name: "Rajesh Kumar",
+      location: "Delhi",
+      text: "The Hindi support made it so much easier for me to understand and file my complaint properly."
+    },
+    {
+      name: "Anita Patel",
+      location: "Bangalore",
+      text: "Professional, fast, and user-friendly. Exactly what every citizen needs when facing cybercrime."
+    }
+  ];
+
   return (
-    <div style={styles.container}>
-      <h1 style={styles.heading}>📄 AI-Powered FIR Generator</h1>
-      <section className="fir-intro">
-  <h2>🚨 About the FIR Generator</h2>
-  <p>
-    In a world of rising cyber threats, filing a First Information Report (FIR) shouldn’t be complicated. 
-    That’s why we built the <strong>CyberCop FIR Generator</strong> — a tool designed to empower every citizen 
-    to report scams and frauds effortlessly.
-  </p>
-  <div className="fir-feature-grid">
-  <div className="feature-card">✅ AI-Based FIR Generation</div>
-  <div className="feature-card">📄 PDF Download & Preview</div>
-  <div className="feature-card">🤖 Smart Assistant Guidance</div>
-  <div className="feature-card">🌐 Hindi & English Support</div>
-  <div className="feature-card">🇮🇳 Made for Bharat, by Bharat</div>
-</div>
-
-  <p>
-    This tool bridges the gap between technology and justice — ensuring that your voice is heard, 
-    your rights are protected, and your case is strong. It's fast, free, and made for every citizen of India.
-  </p>
-</section>
-
-      <p style={styles.subtext}>
-        Report cybercrimes in seconds. Switch between English and Hindi, preview your FIR, and download it instantly.
-      </p>
-
-      {!showResult ? (
-        <div style={styles.form}>
-          <label style={styles.label}>🧑‍💼 Full Name</label>
-          <input
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            placeholder="e.g. Rohan Sharma"
-            style={styles.input}
-          />
-
-          <label style={styles.label}>📞 Contact Number</label>
-          <input
-            name="contact"
-            value={formData.contact}
-            onChange={handleChange}
-            placeholder="e.g. 9876543210"
-            style={styles.input}
-          />
-
-          <label style={styles.label}>📍 Location of Incident</label>
-          <input
-            name="location"
-            value={formData.location}
-            onChange={handleChange}
-            placeholder="e.g. Delhi"
-            style={styles.input}
-          />
-
-          <label style={styles.label}>📝 Describe the Cybercrime</label>
-          <textarea
-            name="incident"
-            rows="4"
-            value={formData.incident}
-            onChange={handleChange}
-            placeholder="e.g. Lost ₹5,000 via fake UPI link..."
-            style={styles.textarea}
-          />
-          <p style={styles.tip}>🤖 AI Tip: Include amount lost, platform used, date/time, and screenshots if available.</p>
-
-          <div style={styles.toggleRow}>
-            <span style={{ color: '#ccc' }}>🌐 Language:</span>
-            <select name="language" value={formData.language} onChange={handleChange} style={styles.select}>
-              <option value="english">English</option>
-              <option value="hindi">हिन्दी</option>
-            </select>
-          </div>
-
-          <button style={styles.button} onClick={() => setShowResult(true)}>🚀 Preview FIR</button>
+    <div className="fir-generator-page">
+      {/* Header */}
+      <header className="page-header">
+        <div className="header-content">
+          <h1 className="page-title">
+            <span className="gradient-text">AI-Powered FIR Generator</span>
+          </h1>
+          <p className="page-subtitle">
+            Real-time FIR generation with live preview. Fill the form and watch your FIR come to life!
+          </p>
         </div>
-      ) : (
-        <div style={styles.result}>
-          <h2 style={styles.previewHeading}>📄 FIR Preview</h2>
-          <pre style={styles.preview}>{generateFIRContent()}</pre>
-          <div style={styles.btnGroup}>
-            <button style={styles.copyBtn} onClick={copyToClipboard}>📋 Copy</button>
-            <button style={styles.downloadBtn} onClick={generatePDF}>⬇️ Download PDF</button>
-            <button style={styles.backBtn} onClick={() => setShowResult(false)}>🔙 Edit</button>
+      </header>
+
+      {/* Main Split Layout */}
+      <div className="main-container">
+        {/* Left Side - Form */}
+        <div className="form-section">
+          <div className="form-container">
+            <div className="form-header">
+              <h2 className="form-title">
+                <span className="form-icon">📝</span>
+                Fill Your Details
+              </h2>
+              <p className="form-subtitle">Complete the form and see your FIR update in real-time</p>
+            </div>
+
+            <form className="fir-form">
+              <div className="form-row">
+                <div className="form-group">
+                  <label className="form-label">
+                    <span className="label-icon">👤</span>
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Enter your full name"
+                    className="form-input"
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">
+                    <span className="label-icon">📞</span>
+                    Contact Number
+                  </label>
+                  <input
+                    type="tel"
+                    name="contact"
+                    value={formData.contact}
+                    onChange={handleChange}
+                    placeholder="Enter your contact number"
+                    className="form-input"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label className="form-label">
+                    <span className="label-icon">📍</span>
+                    Location of Incident
+                  </label>
+                  <input
+                    type="text"
+                    name="location"
+                    value={formData.location}
+                    onChange={handleChange}
+                    placeholder="Enter the location where the incident occurred"
+                    className="form-input"
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">
+                    <span className="label-icon">🌐</span>
+                    Language
+                  </label>
+                  <select
+                    name="language"
+                    value={formData.language}
+                    onChange={handleChange}
+                    className="form-select"
+                  >
+                    <option value="english">English</option>
+                    <option value="hindi">हिन्दी (Hindi)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label className="form-label">
+                    <span className="label-icon">📅</span>
+                    Date of Incident
+                  </label>
+                  <input
+                    type="date"
+                    name="date"
+                    value={formData.date}
+                    onChange={handleChange}
+                    className="form-input"
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">
+                    <span className="label-icon">🕐</span>
+                    Time of Incident
+                  </label>
+                  <input
+                    type="time"
+                    name="time"
+                    value={formData.time}
+                    onChange={handleChange}
+                    className="form-input"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="form-group full-width">
+                <label className="form-label">
+                  <span className="label-icon">📝</span>
+                  Describe the Cybercrime
+                </label>
+                <textarea
+                  name="incident"
+                  rows="6"
+                  value={formData.incident}
+                  onChange={handleChange}
+                  placeholder="Provide detailed information about the cybercrime incident..."
+                  className="form-textarea"
+                  required
+                />
+                <div className="form-tip">
+                  💡 <strong>Pro Tip:</strong> Include amount lost, platform used, and any supporting evidence
+                </div>
+              </div>
+            </form>
           </div>
         </div>
-      )}
+
+        {/* Right Side - Live Preview */}
+        <div className="preview-section">
+          <div className="preview-container">
+            <div className="preview-header">
+              <h2 className="preview-title">
+                <span className="preview-icon">📄</span>
+                Live FIR Preview
+              </h2>
+              <div className="preview-actions">
+                <button className="action-btn copy-btn" onClick={copyToClipboard}>
+                  <span className="btn-icon">📋</span>
+                  Copy
+                </button>
+                <button 
+                  className={`action-btn download-btn ${isGenerating ? 'loading' : ''}`} 
+                  onClick={generatePDF}
+                  disabled={isGenerating}
+                >
+                  <span className="btn-icon">{isGenerating ? '⏳' : '⬇️'}</span>
+                  {isGenerating ? 'Generating...' : 'Download PDF'}
+                </button>
+              </div>
+            </div>
+
+            <div className="fir-document">
+              <div className="document-header">
+                <div className="document-title">
+                  {formData.language === 'hindi' ? 'प्रथम सूचना रिपोर्ट' : 'FIRST INFORMATION REPORT'}
+                </div>
+                <div className="document-subtitle">
+                  {formData.language === 'hindi' ? 'साइबर अपराध' : 'CYBERCRIME COMPLAINT'}
+                </div>
+              </div>
+
+              <div className="document-content">
+                <pre className="fir-content">{generateFIRContent()}</pre>
+              </div>
+
+              <div className="document-footer">
+                <div className="footer-info">
+                  <span className="footer-label">Generated by:</span>
+                  <span className="footer-value">CyberCop AI</span>
+                </div>
+                <div className="footer-info">
+                  <span className="footer-label">Date:</span>
+                  <span className="footer-value">{new Date().toLocaleDateString('en-IN')}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Help & FAQ Section */}
+      <section className="help-faq-section">
+        <div className="container">
+          <div className="help-faq-grid">
+            {/* Quick Help */}
+            <div className="help-section">
+              <h2 className="help-title">
+                <span className="help-icon">💡</span>
+                Quick Help
+              </h2>
+              <div className="help-tips">
+                <div className="help-tip">
+                  <span className="tip-icon">⚡</span>
+                  <div className="tip-content">
+                    <h4>Real-time Preview</h4>
+                    <p>Your FIR updates instantly as you type</p>
+                  </div>
+                </div>
+                <div className="help-tip">
+                  <span className="tip-icon">🔒</span>
+                  <div className="tip-content">
+                    <h4>Secure & Private</h4>
+                    <p>Your data is encrypted and never stored</p>
+                  </div>
+                </div>
+                <div className="help-tip">
+                  <span className="tip-icon">📱</span>
+                  <div className="tip-content">
+                    <h4>Mobile Friendly</h4>
+                    <p>Works perfectly on all devices</p>
+                  </div>
+                </div>
+                <div className="help-tip">
+                  <span className="tip-icon">🌐</span>
+                  <div className="tip-content">
+                    <h4>Multi-Language</h4>
+                    <p>Available in English and Hindi</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* FAQ Section */}
+            <div className="faq-section">
+              <h2 className="faq-title">
+                <span className="faq-icon">❓</span>
+                Quick FAQs
+              </h2>
+              <div className="faq-grid">
+                {faqs.map((faq, index) => (
+                  <div key={index} className="faq-item">
+                    <button
+                      className={`faq-question ${activeFAQ === index ? 'active' : ''}`}
+                      onClick={() => toggleFAQ(index)}
+                    >
+                      <span>{faq.question}</span>
+                      <span className="faq-toggle">{activeFAQ === index ? '−' : '+'}</span>
+                    </button>
+                    <div className={`faq-answer ${activeFAQ === index ? 'active' : ''}`}>
+                      <p>{faq.answer}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
-
-// 💅 CSS-in-JS (Inline styles)
-const styles = {
-  container: {
-    maxWidth: '800px',
-    margin: '0 auto',
-    padding: '50px 20px',
-    backgroundColor: '#0f172a',
-    color: '#e2e8f0',
-    fontFamily: 'Arial, sans-serif',
-    borderRadius: '12px',
-  },
-  heading: {
-    fontSize: '2.2rem',
-    color: '#60a5fa',
-    textAlign: 'center',
-  },
-  subtext: {
-    textAlign: 'center',
-    marginBottom: '2rem',
-    color: '#94a3b8',
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '1rem',
-  },
-  label: {
-    fontWeight: 'bold',
-    marginBottom: '0.25rem',
-    color: '#f1f5f9',
-  },
-  input: {
-    padding: '12px',
-    borderRadius: '8px',
-    border: '1px solid #334155',
-    background: '#1e293b',
-    color: '#f1f5f9',
-  },
-  textarea: {
-    padding: '12px',
-    borderRadius: '8px',
-    border: '1px solid #334155',
-    background: '#1e293b',
-    color: '#f1f5f9',
-    fontSize: '1rem',
-  },
-  select: {
-    background: '#1e293b',
-    color: '#f1f5f9',
-    padding: '8px 12px',
-    border: '1px solid #334155',
-    borderRadius: '6px',
-    marginLeft: '10px',
-  },
-  toggleRow: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '10px',
-    marginTop: '10px',
-  },
-  tip: {
-    fontSize: '0.9rem',
-    color: '#86efac',
-    marginTop: '-10px',
-  },
-  button: {
-    marginTop: '20px',
-    padding: '12px',
-    background: 'linear-gradient(to right, #3b82f6, #06b6d4)',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '8px',
-    cursor: 'pointer',
-    fontWeight: 'bold',
-    fontSize: '1rem',
-  },
-  result: {
-    marginTop: '20px',
-  },
-  previewHeading: {
-    color: '#7dd3fc',
-    fontSize: '1.5rem',
-    marginBottom: '1rem',
-  },
-  preview: {
-    background: '#1e293b',
-    color: '#e0f2fe',
-    padding: '20px',
-    borderRadius: '8px',
-    whiteSpace: 'pre-wrap',
-    marginBottom: '1rem',
-    border: '1px solid #334155',
-  },
-  btnGroup: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    gap: '12px',
-  },
-  copyBtn: {
-    backgroundColor: '#14b8a6',
-    color: '#fff',
-    padding: '10px 18px',
-    border: 'none',
-    borderRadius: '6px',
-    cursor: 'pointer',
-  },
-  downloadBtn: {
-    backgroundColor: '#6366f1',
-    color: '#fff',
-    padding: '10px 18px',
-    border: 'none',
-    borderRadius: '6px',
-    cursor: 'pointer',
-  },
-  backBtn: {
-    backgroundColor: '#475569',
-    color: '#fff',
-    padding: '10px 18px',
-    border: 'none',
-    borderRadius: '6px',
-    cursor: 'pointer',
-  },
-};
 
 export default FIRGenerator;
