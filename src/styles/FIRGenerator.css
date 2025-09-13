@@ -1,0 +1,236 @@
+.fir-generator-container {
+  padding: 60px 20px;
+  color: #fff;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.fir-intro h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: #58a6ff;
+}
+
+.fir-intro p {
+  font-size: 1.1rem;
+  color: #cbd5e1;
+  margin-bottom: 1.5rem;
+}
+
+.how-to-use h2 {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  color: #86efac;
+}
+
+.how-to-use ul {
+  padding-left: 1.2rem;
+  color: #e2e8f0;
+}
+
+.fir-form h2 {
+  font-size: 1.8rem;
+  color: #7dd3fc;
+  margin-bottom: 1rem;
+}
+
+.form-grid {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  margin-bottom: 1.5rem;
+}
+
+input, select, textarea {
+  padding: 12px;
+  border-radius: 6px;
+  border: none;
+  background-color: #1e293b;
+  color: #f1f5f9;
+  font-size: 1rem;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid #3b82f6;
+}
+
+.generate-btn, .copy-btn {
+  background: linear-gradient(to right, #3b82f6, #06b6d4);
+  border: none;
+  padding: 12px 24px;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.generate-btn:hover, .copy-btn:hover {
+  transform: scale(1.05);
+}
+
+.fir-output {
+  background-color: #0f172a;
+  padding: 30px;
+  border-radius: 10px;
+  margin-top: 2rem;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
+}
+
+.fir-output pre {
+  background-color: #1e293b;
+  padding: 20px;
+  border-radius: 6px;
+  white-space: pre-wrap;
+  color: #e0f2fe;
+  margin-bottom: 1rem;
+}
+
+/* src/pages/FIRGenerator.css */
+.fir-page {
+  padding: 60px 20px;
+  color: white;
+  max-width: 800px;
+  margin: auto;
+}
+
+.fir-intro {
+  margin-bottom: 40px;
+}
+
+.fir-intro h1 {
+  font-size: 2.5rem;
+  color: #58a6ff;
+}
+
+.fir-intro p, .fir-intro li {
+  color: #cbd5e1;
+  font-size: 1rem;
+}
+
+/* src/components/FIRForm.css */
+.fir-form-container {
+  background-color: #161b22;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.fir-form label {
+  display: block;
+  margin-bottom: 15px;
+  color: #f8fafc;
+}
+
+.fir-form input, .fir-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border-radius: 6px;
+  border: 1px solid #334155;
+  background-color: #0f172a;
+  color: white;
+}
+
+.fir-form button {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* src/styles/FIRGenerator.css */
+.fir-page {
+  max-width: 800px;
+  margin: auto;
+  padding: 60px 20px;
+  color: #e2e8f0;
+}
+.fir-header h1 {
+  font-size: 2.6rem;
+  color: #60a5fa;
+  text-align: center;
+}
+.subtitle {
+  text-align: center;
+  color: #94a3b8;
+  margin: 10px auto 40px;
+}
+.fir-intro {
+  background: #0f172a;
+  padding: 30px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  color: #cbd5e1;
+}
+.fir-intro h2 {
+  color: #60a5fa;
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+.fir-intro p {
+  margin: 12px 0;
+  line-height: 1.6;
+}
+.fir-intro ul {
+  margin: 20px 0;
+  padding-left: 20px;
+}
+.fir-intro ul li {
+  margin-bottom: 10px;
+}
+.fir-image-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 30px;
+  padding: 0 10px;
+}
+
+.fir-image-grid img {
+  width: 100%;
+  max-width: 180px;   /* Was 220px */
+  height: auto;       /* Let image decide the height */
+  border-radius: 10px;
+  border: 1px solid #334155;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease-in-out;
+}
+
+.fir-image-grid img:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .fir-image-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.fir-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.feature-card {
+  background-color: #1e293b;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 600;
+  color: #f8fafc;
+  box-shadow: 0 0 10px rgba(0,255,255,0.07);
+  transition: transform 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: scale(1.05);
+}

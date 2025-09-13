@@ -1,0 +1,31 @@
+/* src/styles/CyberTip.css */
+.cyber-tip-card {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  color: #fff;
+  padding: 1.5rem;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease;
+  margin: 1rem auto;
+  /* max-width: 400px; */
+  text-align: center;
+} 
+
+.cyber-tip-card:hover {
+  transform: scale(1.05);
+}
+
+.cyber-tip-card h3 {
+  font-size: 1.5rem;
+  color: #00f5d4;
+  margin-bottom: 0.5rem;
+}
+
+.cyber-tip-card p {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+

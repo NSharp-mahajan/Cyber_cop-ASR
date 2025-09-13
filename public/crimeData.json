@@ -1,0 +1,218 @@
+{
+  "Andhra Pradesh": {
+    "cyber_crime_2022": 2341,
+    "women_safety_rate_per_100k": 96.2,
+    "police_score": 6.3,
+    "top_crimes": ["Financial fraud", "Hacking", "Online scams"]
+  },
+  "Arunachal Pradesh": {
+    "cyber_crime_2022": 14,
+    "women_safety_rate_per_100k": 45,
+    "police_score": 5.0,
+    "top_crimes": ["Low volume phishing"]
+  },
+  "Assam": {
+    "cyber_crime_2022": 1733,
+    "women_safety_rate_per_100k": 81.0,
+    "police_score": 5.0,
+    "top_crimes": ["Phishing", "Scam calls"]
+  },
+  "Bihar": {
+    "cyber_crime_2022": 1621,
+    "women_safety_rate_per_100k": 34.0,
+    "police_score": 5.2,
+    "top_crimes": ["Loan fraud", "SIM swap scams"]
+  },
+  "Chhattisgarh": {
+    "cyber_crime_2022": 439,
+    "women_safety_rate_per_100k": 58,
+    "police_score": 4.5,
+    "top_crimes": ["Spam calls", "Messaging scams"]
+  },
+  "Goa": {
+    "cyber_crime_2022": 90,
+    "women_safety_rate_per_100k": 35,
+    "police_score": 5.5,
+    "top_crimes": ["Tourist fraud", "Romance scams"]
+  },
+  "Gujarat": {
+    "cyber_crime_2022": 1417,
+    "women_safety_rate_per_100k": 23,
+    "police_score": 5.8,
+    "top_crimes": ["Bank fraud", "Online impersonation"]
+  },
+  "Haryana": {
+    "cyber_crime_2022": 681,
+    "women_safety_rate_per_100k": 119,
+    "police_score": 5.7,
+    "top_crimes": ["Phishing", "Job offer scams"]
+  },
+  "Himachal Pradesh": {
+    "cyber_crime_2022": 77,
+    "women_safety_rate_per_100k": 42,
+    "police_score": 5.6,
+    "top_crimes": ["Tourist-targeted fraud"]
+  },
+  "Jharkhand": {
+    "cyber_crime_2022": 967,
+    "women_safety_rate_per_100k": 40,
+    "police_score": 4.8,
+    "top_crimes": ["Messaging scams", "SIM scam"]
+  },
+  "Karnataka": {
+    "cyber_crime_2022": 12556,
+    "women_safety_rate_per_100k": 54,
+    "police_score": 6.78,
+    "top_crimes": ["Phishing", "Hacking", "Online harassment"]
+  },
+  "Kerala": {
+    "cyber_crime_2022": 773,
+    "women_safety_rate_per_100k": 82,
+    "police_score": 6.5,
+    "top_crimes": ["Social media scams", "Digital extortion"]
+  },
+  "Madhya Pradesh": {
+    "cyber_crime_2022": 826,
+    "women_safety_rate_per_100k": 79,
+    "police_score": 5.3,
+    "top_crimes": ["Loan fraud", "Insurance scam"]
+  },
+  "Maharashtra": {
+    "cyber_crime_2022": 8249,
+    "women_safety_rate_per_100k": 75.1,
+    "police_score": 5.9,
+    "top_crimes": ["Credit card fraud", "Phishing", "Online banking fraud"]
+  },
+  "Manipur": {
+    "cyber_crime_2022": 18,
+    "women_safety_rate_per_100k": 16,
+    "police_score": 4.9,
+    "top_crimes": ["Low volume cases"]
+  },
+  "Meghalaya": {
+    "cyber_crime_2022": 75,
+    "women_safety_rate_per_100k": 42,
+    "police_score": 4.7,
+    "top_crimes": ["Spam calls"]
+  },
+  "Mizoram": {
+    "cyber_crime_2022": 1,
+    "women_safety_rate_per_100k": 24,
+    "police_score": 5.0,
+    "top_crimes": []
+  },
+  "Nagaland": {
+    "cyber_crime_2022": 4,
+    "women_safety_rate_per_100k": 5,
+    "police_score": 5.1,
+    "top_crimes": []
+  },
+  "Odisha": {
+    "cyber_crime_2022": 1983,
+    "women_safety_rate_per_100k": 104,
+    "police_score": 4.3,
+    "top_crimes": ["SMS fraud", "Fake apps"]
+  },
+  "Punjab": {
+    "cyber_crime_2022": 697,
+    "women_safety_rate_per_100k": 38,
+    "police_score": 5.4,
+    "top_crimes": ["Phishing", "Impersonation"]
+  },
+  "Rajasthan": {
+    "cyber_crime_2022": 1833,
+    "women_safety_rate_per_100k": 75.1,
+    "police_score": 4.0,
+    "top_crimes": ["Online trading fraud", "Phishing"]
+  },
+  "Sikkim": {
+    "cyber_crime_2022": 26,
+    "women_safety_rate_per_100k": 55,
+    "police_score": 5.2,
+    "top_crimes": []
+  },
+  "Tamil Nadu": {
+    "cyber_crime_2022": 2082,
+    "women_safety_rate_per_100k": 24,
+    "police_score": 6.4,
+    "top_crimes": ["Online recruitment scams", "Phishing"]
+  },
+  "Telangana": {
+    "cyber_crime_2022": 15297,
+    "women_safety_rate_per_100k": 117,
+    "police_score": 6.15,
+    "top_crimes": ["Banking fraud", "Cyber stalking", "Data theft"]
+  },
+  "Tripura": {
+    "cyber_crime_2022": 30,
+    "women_safety_rate_per_100k": 37,
+    "police_score": 5.1,
+    "top_crimes": ["SMS fraud"]
+  },
+  "Uttar Pradesh": {
+    "cyber_crime_2022": 10117,
+    "women_safety_rate_per_100k": 59,
+    "police_score": 3.63,
+    "top_crimes": ["OTP phishing", "Fraud", "Hate speech online"]
+  },
+  "Uttarakhand": {
+    "cyber_crime_2022": 559,
+    "women_safety_rate_per_100k": 77,
+    "police_score": 4.2,
+    "top_crimes": ["Phishing", "Loan scams"]
+  },
+  "West Bengal": {
+    "cyber_crime_2022": 401,
+    "women_safety_rate_per_100k": 72,
+    "police_score": 3.63,
+    "top_crimes": ["Identity theft", "Online scams"]
+  },
+  "Delhi": {
+    "cyber_crime_2022": 685,
+    "women_safety_rate_per_100k": 145,
+    "police_score": 4.5,
+    "top_crimes": ["Street stalking", "Phishing"]
+  },
+  "Jammu & Kashmir": {
+    "cyber_crime_2022": 173,
+    "women_safety_rate_per_100k": 58,
+    "police_score": 4.4,
+    "top_crimes": ["SMS scams"]
+  },
+  "Ladakh": {
+    "cyber_crime_2022": 3,
+    "women_safety_rate_per_100k": 11,
+    "police_score": 4.8,
+    "top_crimes": []
+  },
+  "A&N Islands": {
+    "cyber_crime_2022": 28,
+    "women_safety_rate_per_100k": 94,
+    "police_score": 4.7,
+    "top_crimes": []
+  },
+  "Chandigarh": {
+    "cyber_crime_2022": 27,
+    "women_safety_rate_per_100k": 83,
+    "police_score": 5.6,
+    "top_crimes": []
+  },
+  "Daman & Diu": {
+    "cyber_crime_2022": 5,
+    "women_safety_rate_per_100k": 12,
+    "police_score": 5.3,
+    "top_crimes": []
+  },
+  "Puducherry": {
+    "cyber_crime_2022": 64,
+    "women_safety_rate_per_100k": 24,
+    "police_score": 5.2,
+    "top_crimes": []
+  },
+  "Lakshadweep": {
+    "cyber_crime_2022": 1,
+    "women_safety_rate_per_100k": 48,
+    "police_score": 5.0,
+    "top_crimes": []
+  }
+}
