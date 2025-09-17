@@ -10,6 +10,7 @@ import CrimeMap from './pages/CrimeMap';
 import ScamChatbot from './pages/ScamChatbot';
 import UserDashboard from './pages/UserDashboard';
 import CyberTip from './pages/Cyber_tip';
+import PasswordTool from "./pages/PasswordTool";   // ✅ New Import
 
 import './App.css';
 
@@ -23,23 +24,23 @@ function App() {
     });
   }, []);
 
-const navigationLinks = [
-  { path: '/', label: 'Home' },
-  { path: '/fir', label: 'FIR' },
-  { path: '/chatbot', label: 'Chatbot' },
-  { path: '/map', label: 'Map' },  
-  { path: '/dashboard', label: 'Dashboard' },
-];
-
+  const navigationLinks = [
+    { path: '/', label: 'Home' },
+    { path: '/fir', label: 'FIR' },
+    { path: '/chatbot', label: 'Chatbot' },
+    { path: '/map', label: 'Map' },  
+    { path: '/dashboard', label: 'Dashboard' },
+    { path: '/password-tool', label: 'Password Tool' },  // ✅ Added to Navbar
+  ];
 
   const appRoutes = [
-  { path: '/', element: <Home /> },
-  { path: '/fir', element: <FIRGenerator /> },
-  { path: '/chatbot', element: <ScamChatbot /> },
-  { path: '/map', element: <CrimeMap /> },
-  { path: '/dashboard', element: <UserDashboard /> },
-];
-
+    { path: '/', element: <Home /> },
+    { path: '/fir', element: <FIRGenerator /> },
+    { path: '/chatbot', element: <ScamChatbot /> },
+    { path: '/map', element: <CrimeMap /> },
+    { path: '/dashboard', element: <UserDashboard /> },
+    { path: '/password-tool', element: <PasswordTool /> },  // ✅ Added route
+  ];
 
   const handleThemeToggle = () => {
     setDarkMode(!darkMode);
